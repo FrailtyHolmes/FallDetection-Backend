@@ -1,0 +1,13 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/FallDetection?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: holmes96
+
+mybatis-plus:
+  type-aliases-package: com.falldetection.backend.entity # 别名扫描包
