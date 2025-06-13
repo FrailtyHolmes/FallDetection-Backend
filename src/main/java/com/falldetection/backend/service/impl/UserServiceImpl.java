@@ -137,10 +137,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public Result me() {
-        UserDTO user = UserHolder.getUser();
-        if (user == null) {
+        UserDTO userDTO = UserHolder.getUser();
+        if (userDTO == null) {
             return Result.fail("用户未登录");
         }
+        Long id = userDTO.getId();
+        User user = query().eq("user_id", id).one();
         return Result.ok(user);
     }
 }

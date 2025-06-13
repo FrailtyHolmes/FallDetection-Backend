@@ -1,11 +1,28 @@
 package com.falldetection.backend.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.falldetection.backend.dto.AIRequestDTO;
+import com.falldetection.backend.dto.AudioRequestDTO;
+import com.falldetection.backend.dto.Result;
+import com.falldetection.backend.service.IAIService;
+import com.falldetection.backend.service.IAudioService;
+import com.falldetection.backend.service.IEventService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/event")
 @CrossOrigin
 public class EventController {
+    @Autowired
+    private IEventService eventService;
+
+    /**
+     * 获取跌倒事件列表
+     */
+    @GetMapping("/list")
+    public Result getEventList(@RequestParam(defaultValue = "1") Integer page,
+                               @RequestParam(defaultValue = "5") Integer size) {
+        return eventService.getEventList(page, size);
+    }
+
 }
