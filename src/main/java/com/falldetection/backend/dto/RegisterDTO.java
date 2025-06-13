@@ -3,7 +3,9 @@ package com.falldetection.backend.dto;
 import lombok.Data;
 
 @Data
-public class LoginFormDTO {
+public class RegisterDTO {
     private String username;
     private String password;
+    private String email;
+    private String phoneNumber;
 }
