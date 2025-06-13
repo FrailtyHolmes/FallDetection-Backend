@@ -16,7 +16,7 @@ public class AudioController {
     /**
      * 上传音频并识别
      */
-    @PostMapping("/audio-recognition")
+    @PostMapping("/process")
     public Result processAudio(@RequestBody AudioRequestDTO request) {
         return audioService.processAudio(request.getAudioData(), request.getAudioFormat());
     }

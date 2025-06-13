@@ -38,6 +38,7 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
         // 分页查询
         Page<Event> pageInfo = new Page<>(page, size);
         QueryWrapper<Event> wrapper = new QueryWrapper<>();
+
         wrapper.eq("user_id", user.getId())
                 .orderByDesc("timestamp");
 

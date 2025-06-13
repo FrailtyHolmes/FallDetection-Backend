@@ -16,7 +16,7 @@ public class AIController {
     /**
      * 将问题发送给大模型
      */
-    @PostMapping("/ai-question")
+    @PostMapping("/chat")
     public Result processAIQuestion(@RequestBody AIRequestDTO request) {
         return aiService.processQuestion(request.getQuestion());
     }
