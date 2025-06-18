@@ -19,6 +19,37 @@ spring:
           max-idle: 10
           min-idle: 1
           time-between-eviction-runs: 10s
+  # WebFlux配置
+  webflux:
+    base-path: /
+
+  # 编解码器配置
+  codec:
+    max-in-memory-size: 10MB
 
 mybatis-plus:
   type-aliases-package: com.falldetection.backend.entity # 别名扫描包
+
+# Qwen模型配置 - 注意这里的配置结构
+qwen:
+  # API密钥配置 - 优先从环境变量获取，如果没有则使用默认值(需要替换)
+  api-key: sk-14ad107ba9cd45d2bd605a4b3655ce91
+  # API基础URL
+  base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  # 模型名称
+  model-name: qwen-max
+  # 温度参数
+  temperature: 0.7
+  # 最大token数
+  max-tokens: 2000
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.falldetection.backend: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.boot.web: DEBUG
+    reactor.netty: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
