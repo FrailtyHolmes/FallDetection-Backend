@@ -22,6 +22,8 @@ public class AudioController {
     @PostMapping("/process")
     public Result processAudio(@RequestBody AudioRequestDTO request) {
         log.info("音频处理请求: {}", request);
-        return audioService.processAudio(request.getAudioData(), request.getAudioFormat());
+        Result result = audioService.processAudio(request.getAudioData(), request.getAudioFormat());
+        log.info("音频处理结果: {}", result);
+        return result;
     }
 }

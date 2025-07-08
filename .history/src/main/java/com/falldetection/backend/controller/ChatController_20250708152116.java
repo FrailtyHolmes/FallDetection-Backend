@@ -6,7 +6,6 @@ import com.falldetection.backend.entity.ChatResponse;
 import com.falldetection.backend.service.ChatService;
 import dev.langchain4j.data.message.ChatMessage;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.codec.ServerSentEvent;
@@ -24,8 +23,15 @@ import java.util.stream.Collectors;
 public class ChatController {
 
     /** 注入聊天服务 */
-    @Autowired
-    private ChatService chatService;
+    private final ChatService chatService;
+
+    /**
+     * 构造函数注入依赖
+     * @param chatService 聊天服务实例
+     */
+    public ChatController(ChatService chatService) {
+        this.chatService = chatService;
+    }
 
     /**
      * 流式聊天接口（Server-Sent Events格式）
@@ -106,7 +112,7 @@ public class ChatController {
     }
 
     /**
-     * 获取当前会话历史记录
+     * 获取会话历史记录
      * @param sessionId 会话ID
      * @return Mono<ResponseEntity<List<ChatMessage>>> 包含历史消息的响应
      */

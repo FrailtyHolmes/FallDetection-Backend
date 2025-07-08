@@ -22,7 +22,9 @@ public class EventController {
     public Result getEventList(@RequestParam(defaultValue = "1") Integer page,
                                @RequestParam(defaultValue = "5") Integer size) {
         log.info("获取事件列表请求: page={}, size={}", page, size);
-        return eventService.getEventList(page, size);
+        Result result = eventService.getEventList(page, size);
+        log.info("获取事件列表结果: {}", result);
+        return result;
     }
 
 }

@@ -24,7 +24,9 @@ public class UserController {
     @PostMapping("/register")
     public Result register(@RequestBody RegisterDTO registerDTO) {
         log.info("用户注册请求: {}", registerDTO);
-        return userService.register(registerDTO);
+        Result result = userService.register(registerDTO);
+        log.info("用户注册结果: {}", result);
+        return result;
     }
 
     /**
@@ -33,7 +35,9 @@ public class UserController {
     @PostMapping("/login")
     public Result login(@RequestBody LoginFormDTO loginForm) {
         log.info("用户登录请求: {}", loginForm);
-        return userService.login(loginForm);
+        Result result = userService.login(loginForm);
+        log.info("用户登录结果: {}", result);
+        return result;
     }
 
     /**
@@ -42,6 +46,8 @@ public class UserController {
     @GetMapping("/me")
     public Result me() {
         log.info("获取当前用户信息请求");
-        return userService.me();
+        Result result = userService.me();
+        log.info("获取当前用户信息结果: {}", result);
+        return result;
     }
 }
