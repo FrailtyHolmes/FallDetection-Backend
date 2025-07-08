@@ -1,11 +1,7 @@
 package com.falldetection.backend.controller;
 
 import com.falldetection.backend.dto.Result;
-import com.falldetection.backend.dto.SaveRequest;
 import com.falldetection.backend.service.IEventService;
-
-import lombok.extern.slf4j.Slf4j;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/event")
 @CrossOrigin
-@Slf4j
 public class EventController {
-
+    private static final Logger log = LoggerFactory.getLogger(EventController.class);
     @Autowired
     private IEventService eventService;
 
@@ -30,12 +25,10 @@ public class EventController {
         return eventService.getEventList(page, size);
     }
 
-
+    
     @PostMapping("/save-event")
-    public Result saveEvent(@RequestBody SaveRequest saveRequest) {
-        String sessionId = saveRequest.getSessionId();
-        Integer eventType = saveRequest.getEventType();
-        return eventService.saveEvent(sessionId, eventType);
+    public Result saveEvent(@RequestBody EventDTO eventDTO) {
+        return eventService.saveEvent(eventDTO.getSessionId(), eventDTO.getEventType());
     }
 
 }

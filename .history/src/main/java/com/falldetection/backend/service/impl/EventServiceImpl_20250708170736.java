@@ -1,8 +1,6 @@
 package com.falldetection.backend.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import lombok.extern.slf4j.Slf4j;
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -16,8 +14,6 @@ import com.falldetection.backend.service.IEventService;
 import com.falldetection.backend.utils.SystemConstant;
 import com.falldetection.backend.utils.UserHolder;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +22,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Slf4j
 public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements IEventService {
 
     @Autowired
@@ -78,13 +73,8 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
         event.setUserId(user.getId());
         event.setTimestamp(LocalDateTime.now());
         event.setEventType(eventType);
-        if(sessionId == null){
-            log.warn("sessionId 为空. [eventType:{}]", eventType);
-            event.setDialog(null);
-        }else{
-            event.setDialog(chatService.getDialogs(sessionId));
-        }
-        
+        event.setDialog(chatService.getDialogs(sessionId));
+
         save(event);
         return Result.ok();
     }

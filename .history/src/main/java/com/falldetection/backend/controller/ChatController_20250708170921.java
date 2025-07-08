@@ -1,10 +1,10 @@
 package com.falldetection.backend.controller;
 
-import com.falldetection.backend.dto.ChatDialog;
 import com.falldetection.backend.dto.ChatMessageDTO;
-import com.falldetection.backend.dto.ChatRequest;
-import com.falldetection.backend.dto.ChatResponse;
 import com.falldetection.backend.dto.Result;
+import com.falldetection.backend.entity.ChatDialog;
+import com.falldetection.backend.entity.ChatRequest;
+import com.falldetection.backend.entity.ChatResponse;
 import com.falldetection.backend.service.ChatService;
 import dev.langchain4j.data.message.ChatMessage;
 import lombok.extern.slf4j.Slf4j;
@@ -124,5 +124,10 @@ public class ChatController {
             log.error("获取历史记录失败", e);
             return Result.fail("获取历史记录失败");
         }
+    }
+
+    @PostMapping("/save-event")
+    public Result saveEvent(@RequestBody EventDTO eventDTO) {
+        return eventService.saveEvent(eventDTO.getSessionId(), eventDTO.getEventType());
     }
 }

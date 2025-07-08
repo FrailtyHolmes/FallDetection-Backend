@@ -79,7 +79,7 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
         event.setTimestamp(LocalDateTime.now());
         event.setEventType(eventType);
         if(sessionId == null){
-            log.warn("sessionId 为空. [eventType:{}]", eventType);
+            log
             event.setDialog(null);
         }else{
             event.setDialog(chatService.getDialogs(sessionId));

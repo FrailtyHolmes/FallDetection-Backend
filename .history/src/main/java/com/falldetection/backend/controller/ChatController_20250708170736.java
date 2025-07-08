@@ -1,10 +1,10 @@
 package com.falldetection.backend.controller;
 
-import com.falldetection.backend.dto.ChatDialog;
 import com.falldetection.backend.dto.ChatMessageDTO;
-import com.falldetection.backend.dto.ChatRequest;
-import com.falldetection.backend.dto.ChatResponse;
 import com.falldetection.backend.dto.Result;
+import com.falldetection.backend.entity.ChatDialog;
+import com.falldetection.backend.entity.ChatRequest;
+import com.falldetection.backend.entity.ChatResponse;
 import com.falldetection.backend.service.ChatService;
 import dev.langchain4j.data.message.ChatMessage;
 import lombok.extern.slf4j.Slf4j;
@@ -100,7 +100,7 @@ public class ChatController {
      * @return Result 响应结果
      */
     @DeleteMapping("/history/{sessionId}")
-    public Result clearHistory(@PathVariable("sessionId") String sessionId) {
+    public Result clearHistory(@PathVariable String sessionId) {
         try {
             chatService.clearHistory(sessionId);
             return Result.ok();
