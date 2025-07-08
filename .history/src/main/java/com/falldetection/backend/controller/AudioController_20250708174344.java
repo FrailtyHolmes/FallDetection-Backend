@@ -1,6 +1,5 @@
 package com.falldetection.backend.controller;
 
-import com.falldetection.backend.dto.AudioRequestDTO;
 import com.falldetection.backend.dto.Result;
 import com.falldetection.backend.service.IAudioService;
 

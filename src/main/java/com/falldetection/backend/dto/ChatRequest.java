@@ -1,9 +1,13 @@
 package com.falldetection.backend.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChatRequest {
     /** 会话ID，用于标识不同的对话会话 */
     private String sessionId;

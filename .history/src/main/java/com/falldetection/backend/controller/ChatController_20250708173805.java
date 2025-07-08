@@ -5,7 +5,6 @@ import com.falldetection.backend.dto.ChatMessageDTO;
 import com.falldetection.backend.dto.ChatRequest;
 import com.falldetection.backend.dto.ChatResponse;
 import com.falldetection.backend.dto.Result;
-import com.falldetection.backend.service.ChatService;
 import dev.langchain4j.data.message.ChatMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

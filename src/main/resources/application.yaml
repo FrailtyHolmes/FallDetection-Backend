@@ -42,3 +42,9 @@ qwen:
   temperature: 0.7
   # 最大token数
   max-tokens: 2000
+
+iflytek:
+  appid: your_appid
+  apikey: your_apikey
+  host: your_host
+  secretKey: your_secretKey

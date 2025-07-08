@@ -3,7 +3,6 @@ package com.falldetection.backend.controller;
 import com.falldetection.backend.dto.ChatMessageDTO;
 import com.falldetection.backend.entity.ChatRequest;
 import com.falldetection.backend.entity.ChatResponse;
-import com.falldetection.backend.service.ChatService;
 import dev.langchain4j.data.message.ChatMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;

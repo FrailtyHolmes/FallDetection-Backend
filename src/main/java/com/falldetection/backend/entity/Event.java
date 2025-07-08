@@ -1,13 +1,13 @@
 package com.falldetection.backend.entity;
 
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.falldetection.backend.dto.ChatDialog;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -19,6 +19,8 @@ import java.util.List;
 @TableName("fall_events")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Event implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -34,5 +36,4 @@ public class Event implements Serializable {
 
     // 记录用户和ai针对此次事件的问答记录
     private List<ChatDialog> dialog;
-
 }

@@ -9,7 +9,6 @@ import com.falldetection.backend.dto.Result;
 import com.falldetection.backend.dto.UserDTO;
 import com.falldetection.backend.entity.Event;
 import com.falldetection.backend.mapper.EventMapper;
-import com.falldetection.backend.service.ChatService;
 import com.falldetection.backend.service.IEventService;
 import com.falldetection.backend.utils.SystemConstant;
 import com.falldetection.backend.utils.UserHolder;

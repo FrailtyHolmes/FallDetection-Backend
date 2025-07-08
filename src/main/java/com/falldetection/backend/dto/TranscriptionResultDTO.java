@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
-    Long id;
-    String username;
+public class TranscriptionResultDTO {
+    private String sessionId;
+    private String text;
+    private boolean last;
 }

@@ -1,6 +1,7 @@
 package com.falldetection.backend.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.falldetection.backend.service.IChatService;
 import lombok.extern.slf4j.Slf4j;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -11,13 +12,10 @@ import com.falldetection.backend.dto.Result;
 import com.falldetection.backend.dto.UserDTO;
 import com.falldetection.backend.entity.Event;
 import com.falldetection.backend.mapper.EventMapper;
-import com.falldetection.backend.service.ChatService;
 import com.falldetection.backend.service.IEventService;
 import com.falldetection.backend.utils.SystemConstant;
 import com.falldetection.backend.utils.UserHolder;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +28,7 @@ import java.util.stream.Collectors;
 public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements IEventService {
 
     @Autowired
-    private ChatService chatService;
+    private IChatService chatService;
 
     @Override
     public Result getEventList(Integer page, Integer size) {

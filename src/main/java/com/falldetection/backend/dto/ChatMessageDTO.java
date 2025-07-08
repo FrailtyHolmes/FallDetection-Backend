@@ -1,15 +1,14 @@
 package com.falldetection.backend.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChatMessageDTO {
 
-    private final String type;
-    private final String content;
-
-    public ChatMessageDTO(String type, String content) {
-        this.type = type;
-        this.content = content;
-    }
-
-    public String getType() { return type; }
-    public String getContent() { return content; }
+    private String type;
+    private String content;
 }
