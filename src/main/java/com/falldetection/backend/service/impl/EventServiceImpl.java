@@ -79,13 +79,22 @@ public class EventServiceImpl extends ServiceImpl<EventMapper, Event> implements
         event.setTimestamp(LocalDateTime.now());
         event.setEventType(eventType);
         if(sessionId == null){
-            log.warn("sessionId 为空. [eventType:{}]", eventType);
+            log.warn("sessionId 为空. [event:{}]", event);
             event.setDialog(null);
         }else{
             event.setDialog(chatService.getDialogs(sessionId));
         }
-        
-        save(event);
-        return Result.ok();
+
+        boolean success = save(event);
+        if(success){
+            if(sessionId != null){
+                // 清空会话历史，降低sessionId碰撞概率
+                chatService.clearHistory(sessionId);
+            }
+            return Result.ok();
+        }else {
+            log.error("保存事件失败. [event:{}]", event);
+            return Result.fail("保存事件失败");
+        }
     }
 }
