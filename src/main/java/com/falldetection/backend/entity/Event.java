@@ -1,6 +1,7 @@
 package com.falldetection.backend.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.falldetection.backend.dto.ChatDialog;
@@ -35,5 +36,6 @@ public class Event implements Serializable {
     private Integer eventType;
 
     // 记录用户和ai针对此次事件的问答记录
+    @TableField(typeHandler = com.falldetection.backend.handler.ChatDialogListTypeHandler.class)
     private List<ChatDialog> dialog;
 }
