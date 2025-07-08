@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL) // 序列化时忽略null字段
 public class ChatRequest {
     /** 会话ID，用于标识不同的对话会话 */
     private String sessionId;

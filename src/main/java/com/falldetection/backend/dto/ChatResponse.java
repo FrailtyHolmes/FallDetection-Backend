@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChatResponse {
     /** 会话ID */
     private String sessionId;
