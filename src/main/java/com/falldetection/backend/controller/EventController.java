@@ -31,7 +31,7 @@ public class EventController {
     }
 
 
-    @PostMapping("/save-event")
+    @PostMapping("/save")
     public Result saveEvent(@RequestBody SaveRequest saveRequest) {
         String sessionId = saveRequest.getSessionId();
         Integer eventType = saveRequest.getEventType();
