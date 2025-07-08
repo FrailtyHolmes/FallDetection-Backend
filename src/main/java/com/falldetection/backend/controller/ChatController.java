@@ -1,6 +1,7 @@
 package com.falldetection.backend.controller;
 
 import com.falldetection.backend.dto.ChatMessageDTO;
+import com.falldetection.backend.dto.Result;
 import com.falldetection.backend.entity.ChatRequest;
 import com.falldetection.backend.entity.ChatResponse;
 import com.falldetection.backend.service.ChatService;
@@ -95,29 +96,35 @@ public class ChatController {
     /**
      * 清空当前会话历史记录
      * @param sessionId 会话ID
-     * @return Mono<ResponseEntity<Void>> 响应结果
+     * @return Result 响应结果
      */
     @DeleteMapping("/history/{sessionId}")
-    public Mono<ResponseEntity<Void>> clearHistory(@PathVariable String sessionId) {
-        // 调用服务清空历史记录
-        chatService.clearHistory(sessionId);
-        // 返回200 OK响应
-        return Mono.just(ResponseEntity.ok().build());
+    public Result clearHistory(@PathVariable String sessionId) {
+        try {
+            chatService.clearHistory(sessionId);
+            return Result.ok();
+        } catch (Exception e) {
+            log.error("清空历史记录失败", e);
+            return Result.fail("清空历史记录失败");
+        }
     }
 
     /**
      * 获取当前会话历史记录
      * @param sessionId 会话ID
-     * @return Mono<ResponseEntity<List<ChatMessage>>> 包含历史消息的响应
+     * @return Result 包含历史消息的响应
      */
     @GetMapping("/history/{sessionId}")
-    public Mono<ResponseEntity<List<ChatMessageDTO>>> getHistory(@PathVariable("sessionId") String sessionId) {
-        // 获取历史记录
-        List<ChatMessage> history = chatService.getHistory(sessionId);
-        // 返回包含历史记录的响应
-        List<ChatMessageDTO> dtoList = history.stream()
-                .map(msg -> new ChatMessageDTO(msg.getClass().getSimpleName(), msg.text()))
-                .collect(Collectors.toList());
-        return Mono.just(ResponseEntity.ok(dtoList));
+    public Result getHistory(@PathVariable("sessionId") String sessionId) {
+        try {
+            List<ChatMessage> history = chatService.getHistory(sessionId);
+            List<ChatMessageDTO> dtoList = history.stream()
+                    .map(msg -> new ChatMessageDTO(msg.getClass().getSimpleName(), msg.text()))
+                    .collect(Collectors.toList());
+            return Result.ok(dtoList);
+        } catch (Exception e) {
+            log.error("获取历史记录失败", e);
+            return Result.fail("获取历史记录失败");
+        }
     }
 }

@@ -44,7 +44,7 @@ public class ChatService {
         List<ChatMessage> history = sessionHistory.computeIfAbsent(sessionId, k -> new ArrayList<>());
 
         // 添加用户消息到历史记录 - 使用正确的构造方式
-        history.add(UserMessage.from(message));
+        history.add(UserMessage.from(message + "\n"));
 
         // 用于拼接完整的助手回复
         StringBuilder assistantReply = new StringBuilder();
@@ -59,7 +59,7 @@ public class ChatService {
                 .doOnComplete(() -> {
                     // 流式生成完成后，将完整的助手回复添加到历史记录
                     // 使用正确的AiMessage构造方式
-                    history.add(AiMessage.from(assistantReply.toString()));
+                    history.add(AiMessage.from(assistantReply.toString() + "\n"));
                     log.info("Chat completed for session: {}", sessionId);
                 })
                 .doOnError(error -> {
